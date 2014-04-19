@@ -170,9 +170,9 @@
 
 
         
-        <form action="/i18n/setlang/" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='749gkkh775rhxP80pXRVDRfsu5T3OW3P' /></div>
+        <form action="/i18n/setlang/" method="post"><div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='nVI6KQQd2t2FdPMtrsWCvrywK54ILh2v' /></div>
           <input name="next" type="hidden" value="/" />
-            <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='749gkkh775rhxP80pXRVDRfsu5T3OW3P' /></div>
+            <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='nVI6KQQd2t2FdPMtrsWCvrywK54ILh2v' /></div>
             <select style="float: left; height: 33px;" name="language">
               
                 
@@ -258,7 +258,7 @@
     </div>
     <!-- END footer-->
 
-<script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"js-agent.newrelic.com/nr-100.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-1.newrelic.com","97a187b9fc","2379096","Y1ZSNktWWkEDBUdbDVocdhdXVEBbDQgcUQ1GVh4UUFJDQVgVVkAUUUFvClxbRFQXCmwGUgA=",0,48,new Date().getTime(),"","","","",""]);</script></body>
+<script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"js-agent.newrelic.com/nr-100.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-1.newrelic.com","97a187b9fc","2379096","Y1ZSNktWWkEDBUdbDVocdhdXVEBbDQgcUQ1GVh4UUFJDQVgVVkAUUUFvClxbRFQXCmwGUgA=",0,53,new Date().getTime(),"","","","",""]);</script></body>
 
 <!-- BEGIN google analytics -->
 <script type="text/javascript">
