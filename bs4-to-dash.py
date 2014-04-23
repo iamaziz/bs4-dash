@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as bs
 
 
 # CONFIGURATION
-docset_name = 'bs4.docset'
+docset_name = 'Beautiful_Soup_4.docset'
 output = docset_name + '/Contents/Resources/Documents/'
 
 # create docset directory
@@ -35,9 +35,9 @@ def add_urls():
 
   # collected needed pages and their urls
   for link in soup.findAll('a'):
-    name = link.text.strip()
+    name = link.text.strip().replace('\n', '')
     path = link.get('href')
-    if path is not None and name and not path.startswith('http'):
+    if path is not None and name is not None and not path.startswith('http') and not path.startswith('index.zh.html') and not path.startswith('/'):
         path = 'beautiful-soup-4.readthedocs.org/en/latest/index.html' + path
         update_db(name, path)
 
