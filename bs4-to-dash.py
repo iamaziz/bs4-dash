@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup as bs
 docset_name = 'Beautiful_Soup_4.docset'
 output = docset_name + '/Contents/Resources/Documents/'
 
+
 # create docset directory
 if not os.path.exists(output): os.makedirs(output)
 
@@ -40,13 +41,17 @@ def add_urls():
   for link in soup.findAll('a'):
     name = link.text.strip().replace('\n', '')
     path = link.get('href')
-    if path is not None and name is not None and not path.startswith('http') and not path.startswith('index.zh.html') and not path.startswith('/'):
-        path = 'beautiful-soup-4.readthedocs.org/en/latest/index.html' + path
+    filtered = ('http', '/', 'index.zh.html', '#beautiful-soup-documentation')
+    if path is not None and name is not None and not path.startswith(filtered):
+    	path = 'beautiful-soup-4.readthedocs.org/en/latest/index.html' + path
         update_db(name, path)
 
 
 def add_infoplist():
-  name = docset_name.split('.')[0]
+  CFBundleIdentifier = 'bs4'
+  CFBundleName = 'Beautiful Soup 4'
+  DocSetPlatformFamily = 'bs4'
+
   info = " <?xml version=\"1.0\" encoding=\"UTF-8\"?>" \
          "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\"> " \
          "<plist version=\"1.0\"> " \
@@ -62,7 +67,7 @@ def add_infoplist():
          "    <key>dashIndexFilePath</key>" \
          "    <string>{3}</string>" \
          "</dict>" \
-         "</plist>".format(name, name, name, 'beautiful-soup-4.readthedocs.org/en/latest/' + 'index.html')
+         "</plist>".format(CFBundleIdentifier, CFBundleName, DocSetPlatformFamily, 'beautiful-soup-4.readthedocs.org/en/latest/' + 'index.html')
   open(docset_name + '/Contents/info.plist', 'wb').write(info)
 
 db = sqlite3.connect(docset_name + '/Contents/Resources/docSet.dsidx')
