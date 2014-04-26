@@ -15,7 +15,10 @@ urllib.urlretrieve(icon, docset_name + "/icon.png")
 
 
 def update_db(name, path):
+
   typ = 'func'
+  name = name.encode('ascii', 'ignore')
+
   cur.execute("SELECT rowid FROM searchIndex WHERE path = ?", (path,))
   fetched = cur.fetchone()
   if fetched is None:
