@@ -1,4 +1,5 @@
-import requests, sqlite3, os, urllib, urllib2
+import requests, sqlite3, os, urllib
+from urllib.request import urlretrieve # needed for python3 support -> see https://stackoverflow.com/a/21171861 
 from bs4 import BeautifulSoup as bs
 
 
@@ -12,7 +13,7 @@ if not os.path.exists(output): os.makedirs(output)
 
 # add icon
 icon = 'http://upload.wikimedia.org/wikipedia/commons/7/7f/Smile_icon.png'
-urllib.urlretrieve(icon, docset_name + "/icon.png")
+urlretrieve(icon, docset_name + "/icon.png")
 
 
 def update_db(name, path):
@@ -20,6 +21,7 @@ def update_db(name, path):
   typ = 'func'
   name = name.encode('ascii', 'ignore')
 
+  cur.execute('CREATE TABLE IF NOT EXISTS searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
   cur.execute("SELECT rowid FROM searchIndex WHERE path = ?", (path,))
   fetched = cur.fetchone()
   if fetched is None:
@@ -43,8 +45,8 @@ def add_urls():
     path = link.get('href')
     filtered = ('http', '/', 'index.zh.html', '#beautiful-soup-documentation')
     if path is not None and name is not None and not path.startswith(filtered):
-    	path = 'beautiful-soup-4.readthedocs.org/en/latest/index.html' + path
-        update_db(name, path)
+      path = 'beautiful-soup-4.readthedocs.org/en/latest/index.html' + path
+      update_db(name, path)
 
 
 def add_infoplist():
@@ -68,15 +70,19 @@ def add_infoplist():
          "    <string>{3}</string>" \
          "</dict>" \
          "</plist>".format(CFBundleIdentifier, CFBundleName, DocSetPlatformFamily, 'beautiful-soup-4.readthedocs.org/en/latest/' + 'index.html')
-  open(docset_name + '/Contents/info.plist', 'wb').write(info)
+  open(docset_name + '/Contents/info.plist', 'wb').write(info.encode('utf-8'))
 
 db = sqlite3.connect(docset_name + '/Contents/Resources/docSet.dsidx')
 cur = db.cursor()
+
+cur.execute('CREATE TABLE IF NOT EXISTS searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
+cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
+
 try:
     cur.execute('DROP TABLE searchIndex;')
 except:
     pass
-    cur.execute('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
+    cur.execute('CREATE TABLE IF NOT EXISTS searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
     cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 # start
 add_urls()
