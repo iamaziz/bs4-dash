@@ -1,4 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-beautiful-soup-4.readthedocs.org	TRUE	/	FALSE	1999999999	csrftoken	6FA3plRKtbZ3B6xK4Ow0BeTap6mej3Wi
-
