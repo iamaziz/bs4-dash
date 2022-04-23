@@ -1,0 +1,1 @@
+ <?xml version="1.0" encoding="UTF-8"?><plist version="1.0"> <dict>     <key>CFBundleIdentifier</key>     <string>bs4</string>     <key>CFBundleName</key>     <string>Beautiful Soup 4</string>    <key>DocSetPlatformFamily</key>    <string>bs4</string>    <key>dashIndexFilePath</key>    <string>crummy.com/bs4/index.html</string>    <key>isDashDocset</key></dict></plist>
